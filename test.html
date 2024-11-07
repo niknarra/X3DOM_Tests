@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meta Quest Touch Plus Controller Test</title>
+
+    <!-- Load the x3dom JavaScript file -->
+    <script src="x3dom-full.js"></script>
+
+    <!-- Optional basic styling for the page -->
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      x3d {
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- x3d element with scene setup for VR -->
+    <x3d width="800px" height="600px" showLog="true">
+      <scene>
+        <!-- Enable VR navigation for WebXR -->
+        <navigationInfo
+          type='"EXAMINE" "ANY"'
+          avatarSize="0.1 1.6 0.75"
+        ></navigationInfo>
+        <viewpoint position="0 0 5"></viewpoint>
+
+        <!-- Test shape to check scene setup -->
+        <shape>
+          <box size="0.5 0.5 0.5"></box>
+          <appearance>
+            <material diffuseColor="0.7 0.7 0.7"></material>
+          </appearance>
+        </shape>
+      </scene>
+    </x3d>
+
+    <!-- JavaScript to verify WebXR functionality and x3dom initialization -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Testing Meta Quest Touch Plus Controller with x3dom");
+
+        // Check if x3dom has been loaded successfully
+        if (typeof x3dom !== "undefined") {
+          console.log("x3dom loaded successfully.");
+        } else {
+          console.error("x3dom failed to load. Please check the file path.");
+        }
+
+        // Enable WebXR if available
+        if (navigator.xr) {
+          navigator.xr.isSessionSupported("immersive-vr").then((supported) => {
+            if (supported) {
+              console.log("WebXR VR mode supported.");
+            } else {
+              console.log("WebXR VR mode not supported on this device.");
+            }
+          });
+        } else {
+          console.log("WebXR not available in this browser.");
+        }
+      });
+    </script>
+  </body>
+</html>
