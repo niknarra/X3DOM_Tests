@@ -32,9 +32,9 @@ function startXR(session, refSpace) {
     session.requestAnimationFrame(onXRFrame);
 
     const pose = frame.getViewerPose(refSpace);
-    if (pose) {
-      // Handle viewer position updates
-    }
+    // if (pose) {
+    //   // Handle viewer position updates
+    // }
 
     // Access input sources for controllers
     for (const inputSource of session.inputSources) {
